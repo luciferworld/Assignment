@@ -109,18 +109,19 @@
         <p>X₂(s)(s² + s + 1)(s² + s + 2) = X₂(s) + F(s)(s² + s + 2)</p>
         <p>X₂(s)[(s² + s + 1)(s² + s + 2) - 1] = F(s)(s² + s + 2)</p>
         <p>Expanding (s² + s + 1)(s² + s + 2):</p>
-        <p>= s⁴ + s³ + 2s² + s³ + s² + 2s + 2s² + 2s + 4</p>
-        <p>= s⁴ + 2s³ + 5s² + 4s + 4</p>
+        <p>= (s²)(s²) + (s²)(s) + (s²)(2) + (s)(s²) + (s)(s) + (s)(2) + (1)(s²) + (1)(s) + (1)(2)</p>
+        <p>= s⁴ + s³ + 2s² + s³ + s² + 2s + s² + s + 2</p>
+        <p>= s⁴ + 2s³ + 4s² + 3s + 2</p>
         <p>Therefore:</p>
-        <p>X₂(s)[s⁴ + 2s³ + 5s² + 4s + 4 - 1] = F(s)(s² + s + 2)</p>
-        <p>X₂(s)[s⁴ + 2s³ + 5s² + 4s + 3] = F(s)(s² + s + 2)</p>
+        <p>X₂(s)[s⁴ + 2s³ + 4s² + 3s + 2 - 1] = F(s)(s² + s + 2)</p>
+        <p>X₂(s)[s⁴ + 2s³ + 4s² + 3s + 1] = F(s)(s² + s + 2)</p>
     </div>
 
     <div class="final-result">
         <p><strong>Final Transfer Functions:</strong></p>
-        <p>X₂(s)/F(s) = (s² + s + 2)/(s⁴ + 2s³ + 5s² + 4s + 3)</p>
-        <p>X₁(s)/F(s) = X₁(s)/X₂(s) · X₂(s)/F(s) = 1/(s² + s + 2) · (s² + s + 2)/(s⁴ + 2s³ + 5s² + 4s + 3) = 1/(s⁴ + 2s³ + 5s² + 4s + 3)</p>
-        <p>X₃(s)/F(s) = X₃(s)/X₁(s) · X₁(s)/F(s) = 1/(s² + s + 1) · 1/(s⁴ + 2s³ + 5s² + 4s + 3) = 1/[(s² + s + 1)(s⁴ + 2s³ + 5s² + 4s + 3)]</p>
+        <p>X₂(s)/F(s) = (s² + s + 2)/(s⁴ + 2s³ + 4s² + 3s + 1)</p>
+        <p>X₁(s)/F(s) = X₁(s)/X₂(s) · X₂(s)/F(s) = 1/(s² + s + 2) · (s² + s + 2)/(s⁴ + 2s³ + 4s² + 3s + 1) = 1/(s⁴ + 2s³ + 4s² + 3s + 1)</p>
+        <p>X₃(s)/F(s) = X₃(s)/X₁(s) · X₁(s)/F(s) = 1/(s² + s + 1) · 1/(s⁴ + 2s³ + 4s² + 3s + 1) = 1/[(s² + s + 1)(s⁴ + 2s³ + 4s² + 3s + 1)]</p>
     </div>
 
     <h2>Question 2: Deriving State-Space Model Representation</h2>
@@ -211,55 +212,72 @@
 
     <h2>Question 3: Determining Impulse Response Using Inverse Laplace Transform</h2>
 
-    <h3>For the transfer function X₁(s)/F(s) = 1/(s⁴ + 2s³ + 5s² + 4s + 3)</h3>
+    <h3>For the transfer function X₁(s)/F(s) = 1/(s⁴ + 2s³ + 4s² + 3s + 1)</h3>
 
     <div class="equation">
         <p><strong>Step 1:</strong> Find roots of the characteristic equation</p>
-        <p>s⁴ + 2s³ + 5s² + 4s + 3 = 0</p>
-        <p>For a hand solution, assume the roots are -α₁, -α₂, -α₃, and -α₄.</p>
+        <p>s⁴ + 2s³ + 4s² + 3s + 1 = 0</p>
+        <p>Let's denote the roots as -α₁, -α₂, -α₃, and -α₄ (these would need to be found numerically for exact values).</p>
     </div>
 
     <div class="equation">
         <p><strong>Step 2:</strong> Express using partial fraction expansion</p>
-        <p>1/(s⁴ + 2s³ + 5s² + 4s + 3) = A₁/(s+α₁) + A₂/(s+α₂) + A₃/(s+α₃) + A₄/(s+α₄)</p>
+        <p>1/(s⁴ + 2s³ + 4s² + 3s + 1) = A₁/(s+α₁) + A₂/(s+α₂) + A₃/(s+α₃) + A₄/(s+α₄)</p>
+        <p>The coefficients A₁, A₂, A₃, A₄ are found using the residue method:</p>
+        <p>A₁ = [(s+α₁) × (1/(s⁴ + 2s³ + 4s² + 3s + 1))]|s=-α₁</p>
+        <p>Similarly for A₂, A₃, and A₄.</p>
     </div>
 
     <div class="equation">
         <p><strong>Step 3:</strong> Apply inverse Laplace transform</p>
-        <p>h₁(t) = ℒ⁻¹{1/(s⁴ + 2s³ + 5s² + 4s + 3)}</p>
+        <p>h₁(t) = ℒ⁻¹{1/(s⁴ + 2s³ + 4s² + 3s + 1)}</p>
         <p>h₁(t) = A₁e⁻α₁ᵗ + A₂e⁻α₂ᵗ + A₃e⁻α₃ᵗ + A₄e⁻α₄ᵗ, for t ≥ 0</p>
     </div>
 
-    <h3>For the transfer function X₂(s)/F(s) = (s² + s + 2)/(s⁴ + 2s³ + 5s² + 4s + 3)</h3>
+    <h3>For the transfer function X₂(s)/F(s) = (s² + s + 2)/(s⁴ + 2s³ + 4s² + 3s + 1)</h3>
 
     <div class="equation">
         <p><strong>Step 1:</strong> Express using partial fraction expansion</p>
-        <p>(s² + s + 2)/(s⁴ + 2s³ + 5s² + 4s + 3) = B₁/(s+α₁) + B₂/(s+α₂) + B₃/(s+α₃) + B₄/(s+α₄)</p>
+        <p>(s² + s + 2)/(s⁴ + 2s³ + 4s² + 3s + 1) = B₁/(s+α₁) + B₂/(s+α₂) + B₃/(s+α₃) + B₄/(s+α₄)</p>
+        <p>The coefficients B₁, B₂, B₃, B₄ are found using the residue method.</p>
     </div>
 
     <div class="equation">
         <p><strong>Step 2:</strong> Apply inverse Laplace transform</p>
-        <p>h₂(t) = ℒ⁻¹{(s² + s + 2)/(s⁴ + 2s³ + 5s² + 4s + 3)}</p>
+        <p>h₂(t) = ℒ⁻¹{(s² + s + 2)/(s⁴ + 2s³ + 4s² + 3s + 1)}</p>
         <p>h₂(t) = B₁e⁻α₁ᵗ + B₂e⁻α₂ᵗ + B₃e⁻α₃ᵗ + B₄e⁻α₄ᵗ, for t ≥ 0</p>
     </div>
 
-    <h3>For the transfer function X₃(s)/F(s) = 1/[(s² + s + 1)(s⁴ + 2s³ + 5s² + 4s + 3)]</h3>
+    <h3>For the transfer function X₃(s)/F(s) = 1/[(s² + s + 1)(s⁴ + 2s³ + 4s² + 3s + 1)]</h3>
 
     <div class="equation">
         <p><strong>Step 1:</strong> Find roots of the additional quadratic term</p>
-        <p>(s² + s + 1) = 0</p>
-        <p>Let these roots be -β₁ and -β₂</p>
+        <p>s² + s + 1 = 0</p>
+        <p>Using the quadratic formula: s = (-1 ± √(1-4))/2 = (-1 ± √(-3))/2 = -0.5 ± j0.866</p>
+        <p>The roots are complex conjugates: -β₁ = -0.5 + j0.866 and -β₂ = -0.5 - j0.866</p>
     </div>
 
     <div class="equation">
         <p><strong>Step 2:</strong> Express using partial fraction expansion</p>
-        <p>1/[(s² + s + 1)(s⁴ + 2s³ + 5s² + 4s + 3)] = C₁/(s+β₁) + C₂/(s+β₂) + C₃/(s+α₁) + C₄/(s+α₂) + C₅/(s+α₃) + C₆/(s+α₄)</p>
+        <p>1/[(s² + s + 1)(s⁴ + 2s³ + 4s² + 3s + 1)] = C₁/(s+β₁) + C₂/(s+β₂) + C₃/(s+α₁) + C₄/(s+α₂) + C₅/(s+α₃) + C₆/(s+α₄)</p>
+        <p>The coefficients C₁, C₂, C₃, C₄, C₅, C₆ are found using the residue method.</p>
     </div>
 
     <div class="equation">
         <p><strong>Step 3:</strong> Apply inverse Laplace transform</p>
-        <p>h₃(t) = ℒ⁻¹{1/[(s² + s + 1)(s⁴ + 2s³ + 5s² + 4s + 3)]}</p>
+        <p>h₃(t) = ℒ⁻¹{1/[(s² + s + 1)(s⁴ + 2s³ + 4s² + 3s + 1)]}</p>
         <p>h₃(t) = C₁e⁻β₁ᵗ + C₂e⁻β₂ᵗ + C₃e⁻α₁ᵗ + C₄e⁻α₂ᵗ + C₅e⁻α₃ᵗ + C₆e⁻α₄ᵗ, for t ≥ 0</p>
+        <p>Since β₁ and β₂ are complex conjugates, we can rewrite the first two terms as:</p>
+        <p>C₁e⁻β₁ᵗ + C₂e⁻β₂ᵗ = e⁻⁰·⁵ᵗ(D₁cos(0.866t) + D₂sin(0.866t))</p>
+        <p>Therefore:</p>
+        <p>h₃(t) = e⁻⁰·⁵ᵗ(D₁cos(0.866t) + D₂sin(0.866t)) + C₃e⁻α₁ᵗ + C₄e⁻α₂ᵗ + C₅e⁻α₃ᵗ + C₆e⁻α₄ᵗ, for t ≥ 0</p>
+    </div>
+
+    <div class="final-result">
+        <p><strong>Final Impulse Responses:</strong></p>
+        <p>h₁(t) = A₁e⁻α₁ᵗ + A₂e⁻α₂ᵗ + A₃e⁻α₃ᵗ + A₄e⁻α₄ᵗ, for t ≥ 0</p>
+        <p>h₂(t) = B₁e⁻α₁ᵗ + B₂e⁻α₂ᵗ + B₃e⁻α₃ᵗ + B₄e⁻α₄ᵗ, for t ≥ 0</p>
+        <p>h₃(t) = e⁻⁰·⁵ᵗ(D₁cos(0.866t) + D₂sin(0.866t)) + C₃e⁻α₁ᵗ + C₄e⁻α₂ᵗ + C₅e⁻α₃ᵗ + C₆e⁻α₄ᵗ, for t ≥ 0</p>
     </div>
 </body>
 </html>
