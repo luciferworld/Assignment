@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Control Systems Assignment Solution</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            margin: 20px;
+            max-width: 800px;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #3498db;
+            margin-top: 20px;
+        }
+        .equation {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .matrix {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .final-result {
+            background-color: #e8f4f8;
+            padding: 10px;
+            border-left: 4px solid #2980b9;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Control Systems Assignment Solution</h1>
+
+    <h2>Question 1: Finding Transfer Functions Using Newton's Second Law of Motion</h2>
+
+    <h3>Step 1: Applying Newton's Second Law of Motion to derive equations of motion</h3>
+
+    <div class="equation">
+        <p><strong>For Mass M₁ (1 kg):</strong></p>
+        <p>According to Newton's Second Law: F = ma</p>
+        <p>M₁ · ẍ₁ = -K₂x₁ - K₃(x₁-x₂) - fv₂ · ẋ₁</p>
+        <p>1 · ẍ₁ = -1 · x₁ - 1 · (x₁-x₂) - 1 · ẋ₁</p>
+        <p>ẍ₁ = -2x₁ + x₂ - ẋ₁</p>
+    </div>
+
+    <div class="equation">
+        <p><strong>For Mass M₂ (1 kg):</strong></p>
+        <p>M₂ · ẍ₂ = K₃(x₁-x₂) - fv₃ · ẋ₂ + F(t)</p>
+        <p>1 · ẍ₂ = 1 · (x₁-x₂) - 1 · ẋ₂ + F(t)</p>
+        <p>ẍ₂ = x₁ - x₂ - ẋ₂ + F(t)</p>
+    </div>
+
+    <div class="equation">
+        <p><strong>For Mass M₃ (1 kg):</strong></p>
+        <p>M₃ · ẍ₃ = -K₁x₃ - fv₁ · ẋ₃ + K₁x₁</p>
+        <p>1 · ẍ₃ = -1 · x₃ - 1 · ẋ₃ + 1 · x₁</p>
+        <p>ẍ₃ = -x₃ - ẋ₃ + x₁</p>
+    </div>
+
+    <h3>Step 2: Applying Laplace Transform to convert time-domain to frequency-domain</h3>
+
+    <div class="equation">
+        <p><strong>For M₁:</strong></p>
+        <p>ℒ{ẍ₁} = ℒ{-2x₁ + x₂ - ẋ₁}</p>
+        <p>s²X₁(s) = -2X₁(s) + X₂(s) - sX₁(s)</p>
+        <p>s²X₁(s) + sX₁(s) + 2X₁(s) = X₂(s)</p>
+        <p>X₁(s)(s² + s + 2) = X₂(s)</p>
+        <p>X₁(s) = X₂(s)/(s² + s + 2)</p>
+    </div>
+
+    <div class="equation">
+        <p><strong>For M₂:</strong></p>
+        <p>ℒ{ẍ₂} = ℒ{x₁ - x₂ - ẋ₂ + F(t)}</p>
+        <p>s²X₂(s) = X₁(s) - X₂(s) - sX₂(s) + F(s)</p>
+        <p>s²X₂(s) + sX₂(s) + X₂(s) = X₁(s) + F(s)</p>
+        <p>X₂(s)(s² + s + 1) = X₁(s) + F(s)</p>
+    </div>
+
+    <div class="equation">
+        <p><strong>For M₃:</strong></p>
+        <p>ℒ{ẍ₃} = ℒ{-x₃ - ẋ₃ + x₁}</p>
+        <p>s²X₃(s) = -X₃(s) - sX₃(s) + X₁(s)</p>
+        <p>s²X₃(s) + sX₃(s) + X₃(s) = X₁(s)</p>
+        <p>X₃(s)(s² + s + 1) = X₁(s)</p>
+        <p>X₃(s) = X₁(s)/(s² + s + 1)</p>
+    </div>
+
+    <h3>Step 3: Solving algebraically for transfer functions</h3>
+
+    <div class="equation">
+        <p>Substitute X₁(s) = X₂(s)/(s² + s + 2) into equation for M₂:</p>
+        <p>X₂(s)(s² + s + 1) = X₂(s)/(s² + s + 2) + F(s)</p>
+        <p>Multiply both sides by (s² + s + 2):</p>
+        <p>X₂(s)(s² + s + 1)(s² + s + 2) = X₂(s) + F(s)(s² + s + 2)</p>
+        <p>X₂(s)[(s² + s + 1)(s² + s + 2) - 1] = F(s)(s² + s + 2)</p>
+        <p>Expanding (s² + s + 1)(s² + s + 2):</p>
+        <p>= s⁴ + s³ + 2s² + s³ + s² + 2s + 2s² + 2s + 4</p>
+        <p>= s⁴ + 2s³ + 5s² + 4s + 4</p>
+        <p>Therefore:</p>
+        <p>X₂(s)[s⁴ + 2s³ + 5s² + 4s + 4 - 1] = F(s)(s² + s + 2)</p>
+        <p>X₂(s)[s⁴ + 2s³ + 5s² + 4s + 3] = F(s)(s² + s + 2)</p>
+    </div>
+
+    <div class="final-result">
+        <p><strong>Final Transfer Functions:</strong></p>
+        <p>X₂(s)/F(s) = (s² + s + 2)/(s⁴ + 2s³ + 5s² + 4s + 3)</p>
+        <p>X₁(s)/F(s) = X₁(s)/X₂(s) · X₂(s)/F(s) = 1/(s² + s + 2) · (s² + s + 2)/(s⁴ + 2s³ + 5s² + 4s + 3) = 1/(s⁴ + 2s³ + 5s² + 4s + 3)</p>
+        <p>X₃(s)/F(s) = X₃(s)/X₁(s) · X₁(s)/F(s) = 1/(s² + s + 1) · 1/(s⁴ + 2s³ + 5s² + 4s + 3) = 1/[(s² + s + 1)(s⁴ + 2s³ + 5s² + 4s + 3)]</p>
+    </div>
+
+    <h2>Question 2: Deriving State-Space Model Representation</h2>
+
+    <h3>Step 1: Defining state variables based on system dynamics</h3>
+
+    <div class="equation">
+        <p>Let's define our state variables:</p>
+        <p>z₁ = x₁ (position of mass M₁)</p>
+        <p>z₂ = ẋ₁ (velocity of mass M₁)</p>
+        <p>z₃ = x₂ (position of mass M₂)</p>
+        <p>z₄ = ẋ₂ (velocity of mass M₂)</p>
+        <p>z₅ = x₃ (position of mass M₃)</p>
+        <p>z₆ = ẋ₃ (velocity of mass M₃)</p>
+    </div>
+
+    <h3>Step 2: Expressing state derivatives using equations of motion</h3>
+
+    <div class="equation">
+        <p>From our equations of motion:</p>
+        <p>ż₁ = z₂</p>
+        <p>ż₂ = -2z₁ + z₃ - z₂</p>
+        <p>ż₃ = z₄</p>
+        <p>ż₄ = z₁ - z₃ - z₄ + u (where u = F(t))</p>
+        <p>ż₅ = z₆</p>
+        <p>ż₆ = z₁ - z₅ - z₆</p>
+    </div>
+
+    <h3>Step 3: Writing in state-space matrix form</h3>
+
+    <div class="equation">
+        <p><strong>State Equation:</strong> ż = Az + Bu</p>
+        
+        <div class="matrix">
+            <p>
+            [ż₁]   [0  1  0  0  0  0] [z₁]   [0]<br>
+            [ż₂]   [-2 -1  1  0  0  0] [z₂]   [0]<br>
+            [ż₃] = [0  0  0  1  0  0] [z₃] + [0] [u]<br>
+            [ż₄]   [1  0 -1 -1  0  0] [z₄]   [1]<br>
+            [ż₅]   [0  0  0  0  0  1] [z₅]   [0]<br>
+            [ż₆]   [1  0  0  0 -1 -1] [z₆]   [0]
+            </p>
+        </div>
+    </div>
+
+    <div class="equation">
+        <p><strong>Output Equation:</strong> Y = Cz + Du</p>
+        <p>For Y = [x₁(t), x₂(t), x₃(t)]ᵀ:</p>
+        
+        <div class="matrix">
+            <p>
+            [y₁]   [1 0 0 0 0 0] [z₁]   [0]<br>
+            [y₂] = [0 0 1 0 0 0] [z₃] + [0] [u]<br>
+            [y₃]   [0 0 0 0 1 0] [z₅]   [0]
+            </p>
+        </div>
+    </div>
+
+    <div class="final-result">
+        <p><strong>Therefore, the state-space matrices are:</strong></p>
+        <p>
+        A = [0  1  0  0  0  0]<br>
+            [-2 -1  1  0  0  0]<br>
+            [0  0  0  1  0  0]<br>
+            [1  0 -1 -1  0  0]<br>
+            [0  0  0  0  0  1]<br>
+            [1  0  0  0 -1 -1]
+        </p>
+        <p>
+        B = [0]<br>
+            [0]<br>
+            [0]<br>
+            [1]<br>
+            [0]<br>
+            [0]
+        </p>
+        <p>
+        C = [1 0 0 0 0 0]<br>
+            [0 0 1 0 0 0]<br>
+            [0 0 0 0 1 0]
+        </p>
+        <p>
+        D = [0]<br>
+            [0]<br>
+            [0]
+        </p>
+    </div>
+
+    <h2>Question 3: Determining Impulse Response Using Inverse Laplace Transform</h2>
+
+    <h3>For the transfer function X₁(s)/F(s) = 1/(s⁴ + 2s³ + 5s² + 4s + 3)</h3>
+
+    <div class="equation">
+        <p><strong>Step 1:</strong> Find roots of the characteristic equation</p>
+        <p>s⁴ + 2s³ + 5s² + 4s + 3 = 0</p>
+        <p>For a hand solution, assume the roots are -α₁, -α₂, -α₃, and -α₄.</p>
+    </div>
+
+    <div class="equation">
+        <p><strong>Step 2:</strong> Express using partial fraction expansion</p>
+        <p>1/(s⁴ + 2s³ + 5s² + 4s + 3) = A₁/(s+α₁) + A₂/(s+α₂) + A₃/(s+α₃) + A₄/(s+α₄)</p>
+    </div>
+
+    <div class="equation">
+        <p><strong>Step 3:</strong> Apply inverse Laplace transform</p>
+        <p>h₁(t) = ℒ⁻¹{1/(s⁴ + 2s³ + 5s² + 4s + 3)}</p>
+        <p>h₁(t) = A₁e⁻α₁ᵗ + A₂e⁻α₂ᵗ + A₃e⁻α₃ᵗ + A₄e⁻α₄ᵗ, for t ≥ 0</p>
+    </div>
+
+    <h3>For the transfer function X₂(s)/F(s) = (s² + s + 2)/(s⁴ + 2s³ + 5s² + 4s + 3)</h3>
+
+    <div class="equation">
+        <p><strong>Step 1:</strong> Express using partial fraction expansion</p>
+        <p>(s² + s + 2)/(s⁴ + 2s³ + 5s² + 4s + 3) = B₁/(s+α₁) + B₂/(s+α₂) + B₃/(s+α₃) + B₄/(s+α₄)</p>
+    </div>
+
+    <div class="equation">
+        <p><strong>Step 2:</strong> Apply inverse Laplace transform</p>
+        <p>h₂(t) = ℒ⁻¹{(s² + s + 2)/(s⁴ + 2s³ + 5s² + 4s + 3)}</p>
+        <p>h₂(t) = B₁e⁻α₁ᵗ + B₂e⁻α₂ᵗ + B₃e⁻α₃ᵗ + B₄e⁻α₄ᵗ, for t ≥ 0</p>
+    </div>
+
+    <h3>For the transfer function X₃(s)/F(s) = 1/[(s² + s + 1)(s⁴ + 2s³ + 5s² + 4s + 3)]</h3>
+
+    <div class="equation">
+        <p><strong>Step 1:</strong> Find roots of the additional quadratic term</p>
+        <p>(s² + s + 1) = 0</p>
+        <p>Let these roots be -β₁ and -β₂</p>
+    </div>
+
+    <div class="equation">
+        <p><strong>Step 2:</strong> Express using partial fraction expansion</p>
+        <p>1/[(s² + s + 1)(s⁴ + 2s³ + 5s² + 4s + 3)] = C₁/(s+β₁) + C₂/(s+β₂) + C₃/(s+α₁) + C₄/(s+α₂) + C₅/(s+α₃) + C₆/(s+α₄)</p>
+    </div>
+
+    <div class="equation">
+        <p><strong>Step 3:</strong> Apply inverse Laplace transform</p>
+        <p>h₃(t) = ℒ⁻¹{1/[(s² + s + 1)(s⁴ + 2s³ + 5s² + 4s + 3)]}</p>
+        <p>h₃(t) = C₁e⁻β₁ᵗ + C₂e⁻β₂ᵗ + C₃e⁻α₁ᵗ + C₄e⁻α₂ᵗ + C₅e⁻α₃ᵗ + C₆e⁻α₄ᵗ, for t ≥ 0</p>
+    </div>
+</body>
+</html>
